@@ -68,7 +68,7 @@
                     <div class="breadcrumb__text">
                         <h4>Shopping Cart</h4>
                         <div class="breadcrumb__links">
-                            <a href="./index.html">Checkout</a>
+                            <a href="index.php">Checkout</a>
                             <span>Account</span>
                         </div>
                     </div>

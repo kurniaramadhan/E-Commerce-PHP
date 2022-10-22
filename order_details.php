@@ -50,8 +50,8 @@
                     <div class="breadcrumb__text">
                         <h4>Order Details</h4>
                         <div class="breadcrumb__links">
-                            <a href="./index.html">Home</a>
-                            <a href="./shop.html">Shop</a>
+                            <a href="index.php">Home</a>
+                            <a href="shop.php">Shop</a>
                             <span>Order Details</span>
                         </div>
                     </div>

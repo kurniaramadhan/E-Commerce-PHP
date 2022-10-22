@@ -103,8 +103,8 @@
                     <div class="breadcrumb__text">
                         <h4>Shopping Cart</h4>
                         <div class="breadcrumb__links">
-                            <a href="./index.html">Home</a>
-                            <a href="./shop.html">Shop</a>
+                            <a href="index.php">Home</a>
+                            <a href="shop.php">Shop</a>
                             <span>Shopping Cart</span>
                         </div>
                     </div>
@@ -181,7 +181,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="continue__btn">
-                                <button>Continue Shopping <i class="fa fa-arrow-circle-o-right fa-lg"></i></button>
+                                <a href="shop.php" class="btn btn-primary">Continue Shopping <i class="fa fa-arrow-circle-o-right fa-lg"></i></a>
                             </div>
                         </div>
                     </div>

@@ -17,9 +17,9 @@ if (isset($_POST['order_pay_btn'])) {
                 <div class="breadcrumb__text">
                     <h4>Payment</h4>
                     <div class="breadcrumb__links">
-                        <a href="#">Home</a>
-                        <a href="#">Shop</a>
-                        <a href="#">Checkout</a>
+                        <a href="index.php">Home</a>
+                        <a href="shop.php">Shop</a>
+                        <a href="checkout.php">Checkout</a>
                         <span>Payment</span>
                     </div>
                 </div>
@@ -41,12 +41,14 @@ if (isset($_POST['order_pay_btn'])) {
                                 echo $_POST['order_status'];
                             } ?>
                         </h6>
-                        <?php if (isset($_SESSION['total']) && $_SESSION['total'] != 0) { ?>
+                        <?php if(isset($_SESSION['total']) && $_SESSION['total'] != 0) { ?>
                             <h6 class="checkout__title">TOTAL PAYMENT: $<?php echo $_SESSION['total']; ?></h6>
-                            <input type="submit" class="btn btn-primary" id="pay-btn" name="pay_now" value="PAY NOW" />
-                        <?php } else if (isset($_POST['order_status']) && $_POST['order_status'] == "not paid") { ?>
-                            <h6 class="checkout__title">TOTAL PAYMENT: $<?php echo $_SESSION['order_total_price']; ?></h6>
                             <input type="submit" class="btn btn-primary" value="PAY NOW" />
+
+                        <?php } else if(isset($_POST['order_status']) && $_POST['order_status'] == "not paid") { ?>
+                            <h6 class="checkout__title">TOTAL PAYMENT: $<?php echo $_POST['order_total_price']; ?></h6>
+                            <input type="submit" class="btn btn-primary" value="PAY NOW" />
+
                         <?php } else { ?>
                             <p>You don't have an order</p>
                         <?php } ?>

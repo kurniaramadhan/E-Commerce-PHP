@@ -28,8 +28,8 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="product__details__breadcrumb">
-                                <a href="./index.html">Home</a>
-                                <a href="./shop.html">Shop</a>
+                                <a href="index.php">Home</a>
+                                <a href="shop.php">Shop</a>
                                 <span>Product Details</span>
                             </div>
                         </div>

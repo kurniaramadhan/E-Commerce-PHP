@@ -19,8 +19,8 @@ if (!empty($_SESSION['cart'])) {
                 <div class="breadcrumb__text">
                     <h4>Check Out</h4>
                     <div class="breadcrumb__links">
-                        <a href="./index.html">Home</a>
-                        <a href="./shop.html">Shop</a>
+                        <a href="index.php">Home</a>
+                        <a href="shop.php">Shop</a>
                         <span>Check Out</span>
                     </div>
                 </div>
