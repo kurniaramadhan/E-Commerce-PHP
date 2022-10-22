@@ -33,7 +33,6 @@
             }
     
             // 2. Issue new order and store order info to the database
-    
             $order_id = $stmt_orders->insert_id;
     
             // 3. Get products from the cart
@@ -56,6 +55,8 @@
     
             // 5. Remove everything from cart --> delay until payment is done
             // unset($_SESSION['cart']);
+
+            $_SESSION['order_id'] = $order_id;
     
             // 6. Inform user whether everyhting is fine or there is a problem
             header('location: ../payment.php?order_status="order placed successfully"');
