@@ -1470,19 +1470,25 @@ ol {
 .product__pagination {
 	padding-top: 25px;
 	text-align: center;
+	padding: auto;
+	margin: auto;
 }
 
 .product__pagination a {
-	display: inline-block;
 	font-size: 16px;
 	font-weight: 700;
 	color: #111111;
 	height: 30px;
 	width: 30px;
-	border: 1px solid transparent;
 	border-radius: 50%;
 	line-height: 30px;
 	text-align: center;
+	margin: auto;
+	padding: 10px;
+}
+
+.product__pagination a:hover {
+	color: #f7941d;
 }
 
 .product__pagination a.active {

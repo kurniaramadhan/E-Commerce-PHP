@@ -110,8 +110,8 @@
                     <div class="header__nav__option">
                         <a href="#" class="search-switch"><img src="assets/img/icon/search.png" alt=""></a>
                         <a href="../account.php"><img src="assets/img/icon/user.png" alt=""></a>
-                        <a href="../shopping-cart.php"><img src="assets/img/icon/cart.png" alt=""> <span>0</span></a>
-                        <div class="price">$0.00</div>
+                        <a href="../shopping-cart.php"><img src="assets/img/icon/cart.png" alt=""> <span><?php if(isset($_SESSION['quantity']) && $_SESSION['quantity'] != 0) { echo $_SESSION['quantity']; } ?></span></a>
+                        <div class="price">$<?php if(isset($_SESSION['total']) && $_SESSION['total'] != 0) { echo $_SESSION['total']; } ?></div>
                     </div>
                 </div>
             </div>
