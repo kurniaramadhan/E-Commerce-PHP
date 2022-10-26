@@ -1,3 +1,44 @@
+<?php
+    session_start();
+    include('../server/connection.php');
+
+    if (isset($_SESSION['admin_logged_in'])) {
+        header('location: index.php');
+        exit;
+    }
+
+    if (isset($_POST['login_btn'])) {
+        $email = $_POST['email'];
+        $password = md5($_POST['password']);
+
+        $query = "SELECT admin_id, admin_name, admin_email, admin_password FROM admins WHERE admin_email = ? AND admin_password = ? LIMIT 1";
+
+        $stmt_login = $conn->prepare($query);
+        $stmt_login->bind_param('ss', $email, $password);
+        
+        if ($stmt_login->execute()) {
+            $stmt_login->bind_result($admin_id, $admin_name, $admin_email, $admin_password);
+            $stmt_login->store_result();
+
+            if ($stmt_login->num_rows() == 1) {
+                $stmt_login->fetch();
+
+                $_SESSION['admin_id'] = $admin_id;
+                $_SESSION['admin_name'] = $admin_name;
+                $_SESSION['admin_email'] = $admin_email;
+                $_SESSION['admin_logged_in'] = true;
+
+                header('location: index.php?message=Logged in successfully');
+            } else {
+                header('location: login.php?error=Could not verify your account');
+            }
+        } else {
+            // Error
+            header('location: login.php?error=Something went wrong!');
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +50,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Login</title>
+    <title>Male Fashion - Login</title>
 
     <!-- Custom fonts for this template-->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -22,10 +63,8 @@
 
 </head>
 
-<body class="bg-gradient-primary">
-
+<body id="page-top">
     <div class="container">
-
         <!-- Outer Row -->
         <div class="row justify-content-center">
 
@@ -40,15 +79,15 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" id="login-form" enctype="multipart/form-data" method="POST" action="login.php">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                id="exampleInputEmail" name="email" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address...">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                                id="exampleInputPassword" name="password" placeholder="Password">
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -57,16 +96,11 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a>
+                                        <input type="submit" class="btn btn-primary btn-user btn-block" name="login_btn" value="Login" />
                                     </form>
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="register.php">Create an Account!</a>
                                     </div>
                                 </div>
                             </div>

@@ -1,4 +1,4 @@
-<?php include('layouts/header.php'); ?>
+<?php include('header.php'); ?>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
@@ -504,4 +504,4 @@
 
             </div>
             <!-- End of Main Content -->
-<?php include('layouts/footer.php'); ?>
+<?php include('footer.php'); ?>

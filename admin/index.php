@@ -1,5 +1,12 @@
-<?php include('layouts/header.php'); ?>
+<?php
+    session_start();
+    
+    if (!isset($_SESSION['admin_logged_in'])) {
+        header('location: login.php');
+    }
+?>
 
+<?php include('header.php'); ?>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
@@ -334,4 +341,4 @@
             </div>
             <!-- End of Main Content -->
 
-<?php include('layouts/footer.php'); ?>
+<?php include('footer.php'); ?>
