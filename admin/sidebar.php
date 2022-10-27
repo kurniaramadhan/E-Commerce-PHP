@@ -29,7 +29,7 @@
 
     <!-- Nav Item - Orders -->
     <li class="nav-item">
-        <a class="nav-link" href="tables.php">
+        <a class="nav-link" href="orders.php">
             <i class="fas fa-shopping-bag"></i>
             <span>Orders</span></a>
     </li>
@@ -43,7 +43,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Products Management</h6>
-                <a class="collapse-item" href="buttons.html">Product List</a>
+                <a class="collapse-item" href="products.php">Product List</a>
                 <a class="collapse-item" href="cards.html">Create Product</a>
             </div>
         </div>
@@ -66,7 +66,7 @@
 
     <!-- Nav Item - Customers -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="account.php">
             <i class="fas fa-user"></i>
             <span>Account</span></a>
     </li>

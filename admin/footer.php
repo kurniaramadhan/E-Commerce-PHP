@@ -1,5 +1,3 @@
-<?php session_start(); ?>
-
 <!-- Footer -->
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
