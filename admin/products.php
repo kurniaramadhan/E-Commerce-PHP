@@ -1,19 +1,19 @@
 <?php
-session_start();
+    session_start();
 
-if (!isset($_SESSION['admin_logged_in'])) {
-    header('location: login.php');
-}
+    if (!isset($_SESSION['admin_logged_in'])) {
+        header('location: login.php');
+    }
 ?>
 
 <?php include('header.php'); ?>
 
 <?php
-$query_products = "SELECT * FROM products";
+    $query_products = "SELECT * FROM products";
 
-$stmt_products = $conn->prepare($query_products);
-$stmt_products->execute();
-$products = $stmt_products->get_result();
+    $stmt_products = $conn->prepare($query_products);
+    $stmt_products->execute();
+    $products = $stmt_products->get_result();
 ?>
 
 <!-- Begin Page Content -->
@@ -35,6 +35,16 @@ $products = $stmt_products->get_result();
             <h6 class="m-0 font-weight-bold text-primary">Products</h6>
         </div>
         <div class="card-body">
+            <?php if (isset($_GET['success_message'])) { ?>
+                <div class="alert alert-info" role="alert">
+                    <?php if (isset($_GET['success_message'])) { echo $_GET['success_message']; } ?>
+                </div>
+            <?php } ?>
+            <?php if (isset($_GET['fail_message'])) { ?>
+                <div class="alert alert-danger" role="alert">
+                    <?php if (isset($_GET['fail_message'])) { echo $_GET['fail_message']; } ?>
+                </div>
+            <?php } ?>
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -58,7 +68,7 @@ $products = $stmt_products->get_result();
                                 <td><?php echo $row['product_color']; ?></td>
                                 <td>$<?php echo $row['product_price']; ?></td>
                                 <td class="text-center">
-                                    <a href="#" class="btn btn-info btn-circle">
+                                    <a href="edit_product.php?product_id=<?php echo $row['product_id']; ?>" class="btn btn-info btn-circle">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                     <a href="#" class="btn btn-danger btn-circle">
