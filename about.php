@@ -7,8 +7,7 @@
                     <div class="breadcrumb__text">
                         <h4>About Us</h4>
                         <div class="breadcrumb__links">
-                            <a href="index.php">Home</a>
-                            <span>About Us</span>
+                            <a href="index.php">Home <i class="fas fa-chevron-right"></i> About Us</a>
                         </div>
                     </div>
                 </div>

@@ -7,6 +7,14 @@ if (!empty($_SESSION['cart'])) {
     // Kalau mau dihilangkan tinggal diberi comment
     //header('location: index.php');
 }
+
+$kurs_dollar = 15722;
+
+function setRupiah($price)
+{
+    $result = "Rp".number_format($price, 0, ',', '.');
+    return $result;
+}
 ?>
 
 <?php include('layouts/header.php'); ?>
@@ -73,7 +81,6 @@ if (!empty($_SESSION['cart'])) {
                         <div class="checkout__input">
                             <p>Address<span>*</span></p>
                             <input type="text" name="address" placeholder="Street Address" class="checkout__input__add">
-
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6">
@@ -82,11 +89,11 @@ if (!empty($_SESSION['cart'])) {
                             <div class="checkout__order__products">Product <span>Price</span></div>
                             <ul class="checkout__total__products">
                                 <?php foreach ($_SESSION['cart'] as $key => $value) { ?>
-                                    <li><?php echo $value['product_quantity']; ?> <?php echo $value['product_name']; ?> <span>$ <?php echo $value['product_price']; ?></span></li>
+                                    <li><?php echo $value['product_quantity']; ?> <?php echo $value['product_name']; ?> <span> <?php echo setRupiah(($value['product_price'] * $kurs_dollar)); ?></span></li>
                                 <?php } ?>
                             </ul>
                             <ul class="checkout__total__all">
-                                <li>Total <span>$<?php echo $_SESSION['total']; ?></span></li>
+                                <li>Total <span><?php echo setRupiah(($_SESSION['total'] * $kurs_dollar)); ?></span></li>
                             </ul>
 
                             <input type="submit" class="site-btn" id="checkout-btn" name="place_order" value="PLACE ORDER" />

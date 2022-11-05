@@ -34,6 +34,20 @@ $orders = $stmt_orders->get_result();
             <h6 class="m-0 font-weight-bold text-primary">Orders</h6>
         </div>
         <div class="card-body">
+            <?php if (isset($_GET['success_status'])) { ?>
+                <div class="alert alert-info" role="alert">
+                    <?php if (isset($_GET['success_status'])) {
+                        echo $_GET['success_status'];
+                    } ?>
+                </div>
+            <?php } ?>
+            <?php if (isset($_GET['fail_status'])) { ?>
+                <div class="alert alert-danger" role="alert">
+                    <?php if (isset($_GET['fail_status'])) {
+                        echo $_GET['fail_status'];
+                    } ?>
+                </div>
+            <?php } ?>
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -48,20 +62,17 @@ $orders = $stmt_orders->get_result();
                         </tr>
                     </thead>
                     <tbody>
-                        <?php while ($row = $orders->fetch_assoc()) { ?>
+                        <?php foreach($orders as $order) { ?>
                             <tr>
-                                <td><?php echo $row['order_id']; ?></td>
-                                <td><?php echo $row['order_cost']; ?></td>
-                                <td><?php echo $row['order_status']; ?></td>
-                                <td><?php echo $row['user_name']; ?></td>
-                                <td><?php echo $row['user_address']; ?></td>
-                                <td><?php echo $row['order_date']; ?></td>
+                                <td><?php echo $order['order_id']; ?></td>
+                                <td><?php echo $order['order_cost']; ?></td>
+                                <td><?php echo $order['order_status']; ?></td>
+                                <td><?php echo $order['user_name']; ?></td>
+                                <td><?php echo $order['user_address']; ?></td>
+                                <td><?php echo $order['order_date']; ?></td>
                                 <td class="text-center">
-                                    <a href="#" class="btn btn-info btn-circle">
+                                    <a href="edit_order.php?order_id=<?php echo $order['order_id']; ?>" class="btn btn-info btn-circle">
                                         <i class="fas fa-edit"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-danger btn-circle">
-                                        <i class="fas fa-trash-alt"></i>
                                     </a>
                                 </td>
                             </tr>

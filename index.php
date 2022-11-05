@@ -1,51 +1,23 @@
 <?php
 include('server/products.php');
+include('server/limit_blog.php');
 include('layouts/header.php');
+
+$kurs_dollar = 15722;
+
+function setRupiah($price){
+	$result = "Rp".number_format($price,0,',','.');
+	return $result;
+}
 ?>
     <!-- Hero Section Begin -->
     <section class="hero">
         <div class="hero__slider owl-carousel">
-            <div class="hero__items set-bg" data-setbg="assets/img/hero/hero-1.jpg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-5 col-lg-7 col-md-8">
-                            <div class="hero__text">
-                                <h6>Summer Collection</h6>
-                                <h2>Fall - Winter Collections 2030</h2>
-                                <p>A specialist label creating luxury essentials. Ethically crafted with an unwavering
-                                    commitment to exceptional quality.</p>
-                                <a href="#" class="primary-btn">Shop now <span class="arrow_right"></span></a>
-                                <div class="hero__social">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="hero__items set-bg" data-setbg="assets/img/hero/banner1.jpg">
             </div>
-            <div class="hero__items set-bg" data-setbg="assets/img/hero/hero-2.jpg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-5 col-lg-7 col-md-8">
-                            <div class="hero__text">
-                                <h6>Summer Collection</h6>
-                                <h2>Fall - Winter Collections 2030</h2>
-                                <p>A specialist label creating luxury essentials. Ethically crafted with an unwavering
-                                    commitment to exceptional quality.</p>
-                                <a href="#" class="primary-btn">Shop now <span class="arrow_right"></span></a>
-                                <div class="hero__social">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="hero__items set-bg" data-setbg="assets/img/hero/banner2.jpg">
+            </div>
+            <div class="hero__items set-bg" data-setbg="assets/img/hero/banner3.jpg">
             </div>
         </div>
     </section>
@@ -58,33 +30,33 @@ include('layouts/header.php');
                 <div class="col-lg-7 offset-lg-4">
                     <div class="banner__item">
                         <div class="banner__item__pic">
-                            <img src="assets/img/banner/banner-1.jpg" alt="">
+                            <img src="assets/img/banner/b-edukasi440x440.jpg" alt="">
                         </div>
                         <div class="banner__item__text">
-                            <h2>Clothing Collections 2030</h2>
-                            <a href="#">Shop now</a>
+                            <h2>Mainan<br>Edukasi</h2>
+                            <a href="shop.php">Shop now</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-5">
                     <div class="banner__item banner__item--middle">
                         <div class="banner__item__pic">
-                            <img src="assets/img/banner/banner-2.jpg" alt="">
+                            <img src="assets/img/banner/b-planner480x440.jpg" alt="">
                         </div>
                         <div class="banner__item__text">
-                            <h2>Accessories</h2>
-                            <a href="#">Shop now</a>
+                            <h2>Poster<br>Planner</h2>
+                            <a href="shop.php">Shop now</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-7">
                     <div class="banner__item banner__item--last">
                         <div class="banner__item__pic">
-                            <img src="assets/img/banner/banner-3.jpg" alt="">
+                            <img src="assets/img/banner/b-kalender470x470.jpg" alt="">
                         </div>
                         <div class="banner__item__text">
-                            <h2>Shoes Spring 2030</h2>
-                            <a href="#">Shop now</a>
+                            <h2>Kalender<br>2022</h2>
+                            <a href="shop.php">Shop now</a>
                         </div>
                     </div>
                 </div>
@@ -119,13 +91,13 @@ include('layouts/header.php');
                                 <h6><?php echo $row['product_name']; ?></h6>
                                 <a href="<?php echo "single_product.php?product_id=" . $row['product_id']; ?>" class="add-cart">+ Add To Cart</a>
                                 <div class="rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
                                 </div>
-                                <h5>$<?php echo $row['product_price']; ?></h5>
+                                <h5><?php echo setRupiah(($row['product_price'] * $kurs_dollar)); ?></h5>
                                 <div class="product__color__select">
                                     <label for="pc-7">
                                         <input type="radio" id="pc-7">
@@ -152,22 +124,22 @@ include('layouts/header.php');
             <div class="row">
                 <div class="col-lg-3">
                     <div class="categories__text">
-                        <h2>Clothings Hot <br /> <span>Shoe Collection</span> <br /> Accessories</h2>
+                        <h2>Mainan Edukasi <br /> <span>Poster Edukasi</span> <br /> Kalender</h2>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="categories__hot__deal">
-                        <img src="assets/img/product-sale.png" alt="">
+                        <img src="assets/img/a-edukasi.jpg" alt="">
                         <div class="hot__deal__sticker">
-                            <span>Sale Of</span>
-                            <h5>$29.99</h5>
+                            <span>Harga</span>
+                            <h5>Rp12.500</h5>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 offset-lg-1">
                     <div class="categories__deal__countdown">
-                        <span>Deal Of The Week</span>
-                        <h2>Multi-pocket Chest Bag Black</h2>
+                        <span>Tawaran Bulan Ini</span>
+                        <h2>Promo Poster Edukasi</h2>
                         <div class="categories__deal__countdown__timer" id="countdown">
                             <div class="cd-item">
                                 <span>3</span>
@@ -186,7 +158,7 @@ include('layouts/header.php');
                                 <p>Seconds</p>
                             </div>
                         </div>
-                        <a href="#" class="primary-btn">Shop now</a>
+                        <a href="shop.php" class="primary-btn">Shop now</a>
                     </div>
                 </div>
             </div>
@@ -211,9 +183,8 @@ include('layouts/header.php');
                 <div class="col-lg-4">
                     <div class="instagram__text">
                         <h2>Instagram</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua.</p>
-                        <h3>#Male_Fashion</h3>
+                        <p>Kamu bisa beli satuan ya. <br> No min. Order. <br> Jadikan hari spesial keluargamu semakin berkesan, dengan hadiah spesial dari kamu nih 🌼 <br> Buat yg ingin pesan langsung hub. Ke no yg tertera di bio ya</p>
+                        <h3>@mfbinary</h3>
                     </div>
                 </div>
             </div>
@@ -227,42 +198,24 @@ include('layouts/header.php');
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <span>Latest News</span>
-                        <h2>Fashion New Trends</h2>
+                        <span>BLOGS</span>
+                        <h2>Latest Post</h2>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="assets/img/blog/blog-1.jpg"></div>
-                        <div class="blog__item__text">
-                            <span><img src="assets/img/icon/calendar.png" alt=""> 16 February 2020</span>
-                            <h5>What Curling Irons Are The Best Ones</h5>
-                            <a href="#">Read More</a>
+                <?php while ($row = $limit_blog->fetch_assoc()) { ?>
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="blog__item">
+                            <div class="blog__item__pic set-bg" data-setbg="<?php echo 'assets/img/blog/'.$row['blog_image']; ?>"></div>
+                            <div class="blog__item__text">
+                                <span><img src="assets/img/icon/calendar.png" alt=""> <?php echo date('d F Y', strtotime($row['blog_date'])); ?></span>
+                                <h5><?php echo $row['blog_title']; ?></h5>
+                                <a href="<?php echo "blog-details.php?blog_id=" . $row['blog_id']; ?>">Read More</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="assets/img/blog/blog-2.jpg"></div>
-                        <div class="blog__item__text">
-                            <span><img src="assets/img/icon/calendar.png" alt=""> 21 February 2020</span>
-                            <h5>Eternity Bands Do Last Forever</h5>
-                            <a href="#">Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="assets/img/blog/blog-3.jpg"></div>
-                        <div class="blog__item__text">
-                            <span><img src="assets/img/icon/calendar.png" alt=""> 28 February 2020</span>
-                            <h5>The Health Benefits Of Sunglasses</h5>
-                            <a href="#">Read More</a>
-                        </div>
-                    </div>
-                </div>
+                <?php } ?>
             </div>
         </div>
     </section>

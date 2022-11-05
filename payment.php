@@ -6,6 +6,14 @@ if (isset($_POST['order_pay_btn'])) {
     $order_status = $_POST['order_status'];
     $order_total_price = $_POST['order_total_price'];
 }
+
+$kurs_dollar = 15722;
+
+function setRupiah($price)
+{
+    $result = "Rp".number_format($price, 0, ',', '.');
+    return $result;
+}
 ?>
 
 <?php include('layouts/header.php'); ?>
@@ -46,7 +54,7 @@ if (isset($_POST['order_pay_btn'])) {
                         <?php if (isset($_POST['order_status']) && $_POST['order_status'] == "not paid") { ?>
                             <?php $amount = strval($_POST['order_total_price']); ?>
                             <?php $order_id = $_POST['order_id']; ?>
-                            <h6 class="checkout__title">TOTAL PAYMENT: $<?php echo $_POST['order_total_price']; ?></h6>
+                            <h6 class="checkout__title">TOTAL PAYMENT: $<?php echo setRupiah(($_POST['order_total_price'] * $kurs_dollar)); ?></h6>
                             <!--<input type="submit" class="btn btn-primary" value="PAY NOW" />-->
                             <!-- Set up a container element for the button -->
                             <div id="paypal-button-container"></div>
@@ -54,7 +62,7 @@ if (isset($_POST['order_pay_btn'])) {
                         <?php } else if (isset($_SESSION['total']) && $_SESSION['total'] != 0) { ?>
                             <?php $amount = strval($_SESSION['total']); ?>
                             <?php $order_id = $_SESSION['order_id']; ?>
-                            <h6 class="checkout__title">TOTAL PAYMENT: $<?php echo $_SESSION['total']; ?></h6>
+                            <h6 class="checkout__title">TOTAL PAYMENT: <?php echo setRupiah(($_SESSION['total'] * $kurs_dollar)); ?></h6>
                             <!--<input type="submit" class="btn btn-primary" value="PAY NOW" /> -->
                             <!-- Set up a container element for the button -->
                             <div id="paypal-button-container"></div>

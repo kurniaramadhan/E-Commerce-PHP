@@ -14,7 +14,7 @@
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/fontawesome-free/css/all.min.css" type="text/css">
     <link rel="stylesheet" href="assets/css/elegant-icons.css" type="text/css">
     <link rel="stylesheet" href="assets/css/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="assets/css/nice-select.css" type="text/css">
@@ -94,17 +94,17 @@
             <div class="row">
                 <div class="col-lg-3 col-md-3">
                     <div class="header__logo">
-                        <a href="../index.php"><img src="assets/img/logo.png" alt=""></a>
+                        <a href="../index.php"><img src="assets/img/logo170x70.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li class="active"><a href="../index.php">Home</a></li>
-                            <li><a href="../shop.php">Shop</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="../about.php">About Us</a></li>
-                            <li><a href="../contact.php">Contacts</a></li>
+                            <li <?php if($_SERVER['SCRIPT_NAME']=="/index.php") { ?>  class="active"   <?php   }  ?>><a href="../index.php">Home</a></li>
+                            <li <?php if($_SERVER['SCRIPT_NAME']=="/shop.php") { ?>  class="active"   <?php   }  ?>><a href="../shop.php">Shop</a></li>
+                            <li <?php if($_SERVER['SCRIPT_NAME']=="/blog.php") { ?>  class="active"   <?php   }  ?>><a href="../blog.php">Blog</a></li>
+                            <li <?php if($_SERVER['SCRIPT_NAME']=="/about.php") { ?>  class="active"   <?php   }  ?>><a href="../about.php">About Us</a></li>
+                            <li <?php if($_SERVER['SCRIPT_NAME']=="/contact.php") { ?>  class="active"   <?php   }  ?>><a href="../contact.php">Contact</a></li>
                         </ul>
                     </nav>
                 </div>

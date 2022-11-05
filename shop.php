@@ -2,26 +2,7 @@
 include('server/connection.php');
 
 // Use search section
-if (isset($_POST['search']) && isset($_POST['category']) && isset($_POST['brand']) && isset($_POST['price'])) {
-    if (isset($_GET['page_no']) && $_GET['page_no'] != "") {
-        // If the user already entered page then page number is the one that they selected
-        $page_no = $_GET['page_no'];
-    } else {
-        // If user just entered the page then the default page is 1
-        $page_no = 1;
-    }
-
-    $category = $_POST['category'];
-    $brand = $_POST['brand'];
-    $price = $_POST['price'];
-
-    $query_products = "SELECT * FROM products WHERE product_category = ? AND product_brand = ? AND product_price <= ?";
-
-    $stmt_products = $conn->prepare($query_products);
-    $stmt_products->bind_param('ssi', $category, $brand, $price);
-    $stmt_products->execute();
-    $products = $stmt_products->get_result();
-} else if (isset($_POST['search']) && isset($_POST['category'])) {
+if (isset($_POST['search']) && isset($_POST['category'])) {
     if (isset($_GET['page_no']) && $_GET['page_no'] != "") {
         // If the user already entered page then page number is the one that they selected
         $page_no = $_GET['page_no'];
@@ -63,7 +44,7 @@ if (isset($_POST['search']) && isset($_POST['category']) && isset($_POST['brand'
         // If user just entered the page then the default page is 1
         $page_no = 1;
     }
-    
+
     $price = $_POST['price'];
 
     $query_products = "SELECT * FROM products WHERE product_price <= ?";
@@ -105,6 +86,14 @@ if (isset($_POST['search']) && isset($_POST['category']) && isset($_POST['brand'
     $stmt_products->execute();
     $products = $stmt_products->get_result();
 }
+
+$kurs_dollar = 15722;
+
+function setRupiah($price)
+{
+    $result = "Rp".number_format($price, 0, ',', '.');
+    return $result;
+}
 ?>
 
 <?php
@@ -118,7 +107,7 @@ include('layouts/header.php');
                 <div class="breadcrumb__text">
                     <h4>Shop</h4>
                     <div class="breadcrumb__links">
-                        <a href="index.php">Home</a>
+                        <a href="index.php">Home <i class="fas fa-chevron-right"></i></a>
                         <span>Shop</span>
                     </div>
                 </div>
@@ -145,7 +134,7 @@ include('layouts/header.php');
                             <div class="accordion" id="accordionExample">
                                 <div class="card">
                                     <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseOne">Categories</a>
+                                        <a data-toggle="collapse" data-target="#collapseOne">Categories <i class="fas fa-chevron-down"></i></a>
                                     </div>
                                     <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
                                         <div class="card-body">
@@ -153,41 +142,81 @@ include('layouts/header.php');
                                                 <ul>
                                                     <li>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" value="Shoes" name="category" id="category_one" <?php if (isset($category) && $category == 'Shoes') { echo 'checked'; } ?> >
+                                                            <input class="form-check-input" type="radio" value="Alfabet" name="category" id="category_one" <?php if (isset($category) && $category == 'Alfabet') {
+                                                                                                                                                                echo 'checked';
+                                                                                                                                                            } ?>>
                                                             <label class="form-check-label" for="category">
-                                                                Shoes
+                                                                Alfabet
                                                             </label>
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" value="T-Shirt" name="category" id="category_two" <?php if (isset($category) && $category == 'T-Shirt') { echo 'checked'; } ?> >
+                                                            <input class="form-check-input" type="radio" value="Angka" name="category" id="category_two" <?php if (isset($category) && $category == 'Angka') {
+                                                                                                                                                                echo 'checked';
+                                                                                                                                                            } ?>>
                                                             <label class="form-check-label" for="category">
-                                                                T-Shirt
+                                                                Angka
                                                             </label>
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" value="Jacket" name="category" id="category_three" <?php if (isset($category) && $category == 'Jacket') { echo 'checked'; } ?> >
+                                                            <input class="form-check-input" type="radio" value="Kalender" name="category" id="category_three" <?php if (isset($category) && $category == 'Kalender') {
+                                                                                                                                                                echo 'checked';
+                                                                                                                                                            } ?>>
                                                             <label class="form-check-label" for="category">
-                                                                Jacket
+                                                                Kalender
                                                             </label>
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" value="Scarf" name="category" id="category_four" <?php if (isset($category) && $category == 'Scarf') { echo 'checked'; } ?> >
+                                                            <input class="form-check-input" type="radio" value="Peta" name="category" id="category_four" <?php if (isset($category) && $category == 'Peta') {
+                                                                                                                                                                echo 'checked';
+                                                                                                                                                            } ?>>
                                                             <label class="form-check-label" for="category">
-                                                                Scarf
+                                                                Peta
                                                             </label>
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" value="Perfume" name="category" id="category_five" <?php if (isset($category) && $category == 'Perfume') { echo 'checked'; } ?> >
+                                                            <input class="form-check-input" type="radio" value="Hewan" name="category" id="category_five" <?php if (isset($category) && $category == 'Hewan') {
+                                                                                                                                                                echo 'checked';
+                                                                                                                                                            } ?>>
                                                             <label class="form-check-label" for="category">
-                                                                Perfume
+                                                                Hewan
+                                                            </label>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" value="Tabel Periodik" name="category" id="category_five" <?php if (isset($category) && $category == 'Tabel Periodik') {
+                                                                                                                                                                echo 'checked';
+                                                                                                                                                            } ?>>
+                                                            <label class="form-check-label" for="category">
+                                                                Tabel Periodik
+                                                            </label>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" value="Buah dan Sayur" name="category" id="category_five" <?php if (isset($category) && $category == 'Buah dan Sayur') {
+                                                                                                                                                                echo 'checked';
+                                                                                                                                                            } ?>>
+                                                            <label class="form-check-label" for="category">
+                                                                Buah dan Sayur
+                                                            </label>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" value="Hijaiyah" name="category" id="category_five" <?php if (isset($category) && $category == 'Hijaiyah') {
+                                                                                                                                                                echo 'checked';
+                                                                                                                                                            } ?>>
+                                                            <label class="form-check-label" for="category">
+                                                                Hijaiyah
                                                             </label>
                                                         </div>
                                                     </li>
@@ -198,7 +227,7 @@ include('layouts/header.php');
                                 </div>
                                 <div class="card">
                                     <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseTwo">Branding</a>
+                                        <a data-toggle="collapse" data-target="#collapseTwo">Paper Type <i class="fas fa-chevron-down"></i></a>
                                     </div>
                                     <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
                                         <div class="card-body">
@@ -206,102 +235,81 @@ include('layouts/header.php');
                                                 <ul>
                                                     <li>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" value="Dior" name="brand" id="brand_one" <?php if (isset($brand) && $brand == 'Dior') { echo 'checked'; } ?>>
+                                                            <input class="form-check-input" type="radio" value="Art Paper" name="brand" id="brand_one" <?php if (isset($brand) && $brand == 'Art Paper') {
+                                                                                                                                                        echo 'checked';
+                                                                                                                                                    } ?>>
                                                             <label class="form-check-label" for="brand">
-                                                                Dior
+                                                                Art Paper
                                                             </label>
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" value="Louis Vuitton" name="brand" id="brand_two" <?php if (isset($brand) && $brand == 'Louis Vuitton') { echo 'checked'; } ?>>
+                                                            <input class="form-check-input" type="radio" value="Laminasi Glossy" name="brand" id="brand_two" <?php if (isset($brand) && $brand == 'Laminasi Glossy') {
+                                                                                                                                                                echo 'checked';
+                                                                                                                                                            } ?>>
                                                             <label class="form-check-label" for="brand">
-                                                                Louis Vuitton
+                                                                Laminasi Glossy
                                                             </label>
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" value="Chanel" name="brand" id="brand_three" <?php if (isset($brand) && $brand == 'Chanel') { echo 'checked'; } ?>>
+                                                            <input class="form-check-input" type="radio" value="NCR" name="brand" id="brand_three" <?php if (isset($brand) && $brand == 'NCR') {
+                                                                                                                                                            echo 'checked';
+                                                                                                                                                        } ?>>
                                                             <label class="form-check-label" for="brand">
-                                                                Chanel
+                                                                NCR
                                                             </label>
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" value="Hermes" name="brand" id="brand_four" <?php if (isset($brand) && $brand == 'Hermes') { echo 'checked'; } ?>>
+                                                            <input class="form-check-input" type="radio" value="Concorde" name="brand" id="brand_four" <?php if (isset($brand) && $brand == 'Concorde') {
+                                                                                                                                                            echo 'checked';
+                                                                                                                                                        } ?>>
                                                             <label class="form-check-label" for="brand">
-                                                                Hermes
+                                                                Concorde
                                                             </label>
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" value="Gucci" name="brand" id="brand_five" <?php if (isset($brand) && $brand == 'Gucci') { echo 'checked'; } ?>>
+                                                            <input class="form-check-input" type="radio" value="Art Carton" name="brand" id="brand_five" <?php if (isset($brand) && $brand == 'Art Carton') {
+                                                                                                                                                        echo 'checked';
+                                                                                                                                                    } ?>>
                                                             <label class="form-check-label" for="brand">
-                                                                Gucci
-                                                            </label>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseThree">Filter Price</a>
-                                    </div>
-                                    <div id="collapseThree" class="collapse show" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <div class="shop__sidebar__price">
-                                                <ul>
-                                                    <li>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="radio" value="50.00" name="price" id="price_one">
-                                                            <label class="form-check-label" for="price">
-                                                                $0.00 - $50.00
+                                                                Art Carton
                                                             </label>
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" value="100.00" name="price" id="price_two">
-                                                            <label class="form-check-label" for="price">
-                                                                $50.00 - $100.00
+                                                            <input class="form-check-input" type="radio" value="Ivory" name="brand" id="brand_five" <?php if (isset($brand) && $brand == 'Ivory') {
+                                                                                                                                                        echo 'checked';
+                                                                                                                                                    } ?>>
+                                                            <label class="form-check-label" for="brand">
+                                                                Ivory
                                                             </label>
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" value="150.00" name="price" id="price_three">
-                                                            <label class="form-check-label" for="price">
-                                                                $100.00 - $150.00
+                                                            <input class="form-check-input" type="radio" value="Matt Paper" name="brand" id="brand_five" <?php if (isset($brand) && $brand == 'Matt Paper') {
+                                                                                                                                                        echo 'checked';
+                                                                                                                                                    } ?>>
+                                                            <label class="form-check-label" for="brand">
+                                                                Matt Paper
                                                             </label>
                                                         </div>
                                                     </li>
                                                     <li>
                                                         <div class="form-check">
-                                                            <input class="form-check-input" type="radio" value="200.00" name="price" id="price_four">
-                                                            <label class="form-check-label" for="price">
-                                                                $150.00 - $200.00
-                                                            </label>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="radio" value="250.00" name="price" id="price_five">
-                                                            <label class="form-check-label" for="price">
-                                                                $200.00 - $250.00
-                                                            </label>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="radio" value="251.00" name="price" id="price_six" <?php if (isset($price) && $price > 250000) { echo 'checked'; } ?>>
-                                                            <label class="form-check-label" for="price">
-                                                                $250.00+
+                                                            <input class="form-check-input" type="radio" value="Linen Jepang" name="brand" id="brand_five" <?php if (isset($brand) && $brand == 'Linen Jepang') {
+                                                                                                                                                        echo 'checked';
+                                                                                                                                                    } ?>>
+                                                            <label class="form-check-label" for="brand">
+                                                                Linen Jepang
                                                             </label>
                                                         </div>
                                                     </li>
@@ -312,6 +320,7 @@ include('layouts/header.php');
                                 </div>
                                 <div class="card">
                                     <div class="card-body">
+                                        <button class="btn btn-secondary" onClick="history.go(0);"><i class="fas fa-sync-alt"></i></button>
                                         <input type="submit" class="btn btn-primary" name="search" value="Search" />
                                     </div>
                                 </div>
@@ -325,7 +334,11 @@ include('layouts/header.php');
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="shop__product__option__left">
-                                <p>Showing 1 – <?php if (isset($total_product_per_page)) { echo $total_product_per_page; } ?> of <?php if (isset($total_products)) { echo $total_products; } ?> results</p>
+                                <p>Showing 1 – <?php if (isset($total_product_per_page)) {
+                                                    echo $total_product_per_page;
+                                                } ?> of <?php if (isset($total_products)) {
+                                                            echo $total_products;
+                                                        } ?> results</p>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
@@ -333,8 +346,7 @@ include('layouts/header.php');
                                 <p>Sort by Price:</p>
                                 <select>
                                     <option value="">Low To High</option>
-                                    <option value="">$0 - $55</option>
-                                    <option value="">$55 - $100</option>
+                                    <option value="">High To Low</option>
                                 </select>
                             </div>
                         </div>
@@ -343,7 +355,7 @@ include('layouts/header.php');
                 <div class="row">
                     <?php while ($row = $products->fetch_assoc()) { ?>
                         <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item">
+                            <div class="product__item sale">
                                 <div class="product__item__pic set-bg" data-setbg="assets/img/product/<?php echo $row['product_image']; ?>">
                                     <ul class="product__hover">
                                         <li><a href="#"><img src="assets/img/icon/heart.png" alt=""></a></li>
@@ -357,13 +369,13 @@ include('layouts/header.php');
                                     <h5><?php echo $row['product_brand']; ?></h5>
                                     <a href="<?php echo "single_product.php?product_id=" . $row['product_id']; ?>" class="add-cart">+ Add To Cart</a>
                                     <div class="rating">
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="far fa-star"></i>
                                     </div>
-                                    <h5>$<?php echo $row['product_price']; ?></h5>
+                                    <h5><?php echo setRupiah($row['product_price'] * $kurs_dollar); ?></h5>
                                     <div class="product__color__select">
                                         <label for="pc-4">
                                             <input type="radio" id="pc-4">
@@ -384,17 +396,29 @@ include('layouts/header.php');
                     <div class="col-lg-12">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
-                                <li class="page-item <?php if ($page_no <= 1) { echo 'disabled'; } ?>">
-                                    <a class="page-link" href="<?php if ($page_no <= 1) { echo '#'; } else { echo "?page_no=".($page_no-1); } ?>">Previous</a>
+                                <li class="page-item <?php if ($page_no <= 1) {
+                                                            echo 'disabled';
+                                                        } ?>">
+                                    <a class="page-link" href="<?php if ($page_no <= 1) {
+                                                                    echo '#';
+                                                                } else {
+                                                                    echo "?page_no=" . ($page_no - 1);
+                                                                } ?>">Previous</a>
                                 </li>
                                 <li class="page-item"><a class="page-link" href="?page_no=1">1</a></li>
                                 <li class="page-item"><a class="page-link" href="?page_no=2">2</a></li>
                                 <?php if ($page_no >= 3) { ?>
                                     <li class="page-item"><a class="page-link" href="#">...</a></li>
-                                    <li class="page-item"><a class="page-link" href="<?php echo "?page_no=".$page_no; ?>"><?php echo $page_no; ?></a></li>
+                                    <li class="page-item"><a class="page-link" href="<?php echo "?page_no=" . $page_no; ?>"><?php echo $page_no; ?></a></li>
                                 <?php } ?>
-                                <li class="page-item <?php if ($page_no >= $total_number_of_pages) { echo 'disabled'; } ?>">
-                                    <a class="page-link" href="<?php if ($page_no >= $total_number_of_pages) { echo '#'; } else { echo "?page_no=".($page_no+1); } ?>">Next</a>
+                                <li class="page-item <?php if ($page_no >= $total_number_of_pages) {
+                                                            echo 'disabled';
+                                                        } ?>">
+                                    <a class="page-link" href="<?php if ($page_no >= $total_number_of_pages) {
+                                                                    echo '#';
+                                                                } else {
+                                                                    echo "?page_no=" . ($page_no + 1);
+                                                                } ?>">Next</a>
                                 </li>
                             </ul>
                         </nav>

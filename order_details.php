@@ -37,6 +37,14 @@
 
         return $total;
     }
+
+    $kurs_dollar = 15722;
+
+    function setRupiah($price)
+    {
+        $result = "Rp".number_format($price, 0, ',', '.');
+        return $result;
+    }
 ?>
 
 <?php
@@ -88,7 +96,7 @@
                                             </div>
                                             <div class="product__cart__item__text">
                                                 <h6><?php echo $row['product_name']; ?></h6>
-                                                <h5><?php echo $row['product_price']; ?></h5>
+                                                <h5><?php echo setRupiah(($row['product_price'] * $kurs_dollar)); ?></h5>
                                             </div>
                                         </td>
                                         <td class="product__cart__item">

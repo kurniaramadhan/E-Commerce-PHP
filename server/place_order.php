@@ -24,7 +24,7 @@
                     VALUES (?, ?, ?, ?, ?, ?, ?)";
     
             $stmt_orders = $conn->prepare($query_orders);
-            $stmt_orders->bind_param('isiisss', $order_cost, $order_status, $user_id, $phone, $city, $address, $order_date);
+            $stmt_orders->bind_param('ssissss', $order_cost, $order_status, $user_id, $phone, $city, $address, $order_date);
             $stmt_status = $stmt_orders->execute();
     
             if (!$stmt_status) {
@@ -49,12 +49,12 @@
                         VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     
                 $stmt_order_items = $conn->prepare($query_order_items);
-                $stmt_order_items->bind_param('iissiiis', $order_id, $product_id, $product_name, $product_image, $product_price, $product_quantity, $user_id, $order_date);
+                $stmt_order_items->bind_param('iissssis', $order_id, $product_id, $product_name, $product_image, $product_price, $product_quantity, $user_id, $order_date);
                 $stmt_order_items->execute();
             }
     
             // 5. Remove everything from cart --> delay until payment is done
-            // unset($_SESSION['cart']);
+            //unset($_SESSION['cart']);
 
             $_SESSION['order_id'] = $order_id;
     

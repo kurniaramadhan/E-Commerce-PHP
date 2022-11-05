@@ -11,13 +11,13 @@
         $email = $_POST['user_email'];
         $password = md5($_POST['user_password']);
 
-        $query = "SELECT user_id, user_name, user_email, user_password FROM users WHERE user_email = ? AND user_password = ? LIMIT 1";
+        $query = "SELECT user_id, user_name, user_email, user_password, user_phone, user_address, user_city, user_photo FROM users WHERE user_email = ? AND user_password = ? LIMIT 1";
 
         $stmt_login = $conn->prepare($query);
         $stmt_login->bind_param('ss', $email, $password);
         
         if ($stmt_login->execute()) {
-            $stmt_login->bind_result($user_id, $user_name, $user_email, $user_password);
+            $stmt_login->bind_result($user_id, $user_name, $user_email, $user_password, $user_phone, $user_address, $user_city, $user_photo);
             $stmt_login->store_result();
 
             if ($stmt_login->num_rows() == 1) {
@@ -26,6 +26,10 @@
                 $_SESSION['user_id'] = $user_id;
                 $_SESSION['user_name'] = $user_name;
                 $_SESSION['user_email'] = $user_email;
+                $_SESSION['user_phone'] = $user_phone;
+                $_SESSION['user_address'] = $user_address;
+                $_SESSION['user_city'] = $user_city;
+                $_SESSION['user_photo'] = $user_photo;
                 $_SESSION['logged_in'] = true;
 
                 header('location: account.php?message=Logged in successfully');
@@ -46,11 +50,13 @@
         <div class="container">
             <div class="checkout__form">
                 <form id="login-form" method="POST" action="login.php">
-                    <div class="alert alert-danger" role="alert">
-                        <?php if (isset($_GET['error'])) {
-                            echo $_GET['error'];
-                        } ?>
-                    </div>
+                    <?php if (isset($_GET['error'])) { ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?php if (isset($_GET['error'])) {
+                                echo $_GET['error'];
+                            } ?>
+                        </div>
+                    <?php } ?>
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
                             <h6 class="checkout__title">Login</h6>

@@ -2,7 +2,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2021</span>
+            <span>Copyright &copy; 2022 | Sistem Informasi Itenas Bandung | This website is made with <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i> by <a href="https://github.com/kurniaramadhan" target="_blank">Kurnia Ramadhan Putra</a></span>
         </div>
     </div>
 </footer>

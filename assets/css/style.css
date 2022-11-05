@@ -109,6 +109,13 @@ ol {
 /*---------------------
   Helper CSS
 -----------------------*/
+.glyphicon {  margin-bottom: 10px;margin-right: 10px;}
+
+small {
+display: block;
+line-height: 1.428571429;
+color: #999;
+}
 
 .section-title {
 	margin-bottom: 45px;
@@ -1398,7 +1405,6 @@ ol {
 
 .shop__sidebar__accordion .card-heading a:after,
 .shop__sidebar__accordion .card-heading>a.active[aria-expanded=false]:after {
-	content: "";
 	font-family: "FontAwesome";
 	font-size: 24px;
 	font-weight: 700;
@@ -1410,7 +1416,6 @@ ol {
 }
 
 .shop__sidebar__accordion .card-heading.active a:after {
-	content: "";
 	font-family: "FontAwesome";
 	font-size: 24px;
 	font-weight: 700;
@@ -1585,7 +1590,6 @@ ol {
 	position: absolute;
 	right: -14px;
 	top: 0;
-	content: "";
 	font-family: "FontAwesome";
 }
 
@@ -2087,7 +2091,6 @@ ol {
 	position: absolute;
 	right: -14px;
 	top: 0;
-	content: "";
 	font-family: "FontAwesome";
 }
 
@@ -2782,7 +2785,7 @@ ol {
 
 .blog__item:hover .blog__item__text {
 	-webkit-box-shadow: 0px 15px 60px rgba(67, 69, 70, 0.05);
-	box-shadow: 0px 15px 60px rgba(67, 69, 70, 0.05);
+	box-shadow: 20px 15px 60px #d3cbcb;
 }
 
 .blog__item__pic {
@@ -3068,6 +3071,7 @@ ol {
 .blog__details__text p {
 	font-size: 18px;
 	line-height: 34px;
+	text-align: justify;
 }
 
 .blog__details__text p:last-child {

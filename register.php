@@ -12,6 +12,18 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
         $confirm_password = $_POST['confirm_password'];
+        $phone = $_POST['phone'];
+        $city = $_POST['city'];
+        $address = $_POST['address'];
+
+        // This is image file
+        $photo = $_FILES['photo']['tmp_name'];
+
+        // Photo name
+        $photo_name = str_replace(' ', '_', $name) . ".jpg";
+
+        // Upload image
+        move_uploaded_file($photo, "assets/img/profile/" . $photo_name);
 
         // If password didn't match
         if ($password !== $confirm_password) {
@@ -39,12 +51,12 @@
             
             // If no user registered with this email
             } else {
-                $query_save_user = "INSERT INTO users (user_name, user_email, user_password) 
-                                    VALUES (?, ?, ?)";
+                $query_save_user = "INSERT INTO users (user_name, user_email, user_password, user_phone, user_address, user_city, user_photo) 
+                                    VALUES (?, ?, ?, ?, ?, ?, ?)";
 
                 // Create a new user
                 $stmt_save_user = $conn->prepare($query_save_user);
-                $stmt_save_user->bind_param('sss', $name, $email, md5($password));
+                $stmt_save_user->bind_param('ssssss', $name, $email, md5($password), $phone, $address, $city, $photo_name);
                 
                 // If account was created successfully
                 if ($stmt_save_user->execute()) {
@@ -53,6 +65,7 @@
                     $_SESSION['user_id'] = $user_id;
                     $_SESSION['user_email'] = $email;
                     $_SESSION['user_name'] = $name;
+                    $_SESSION['user_photo'] = $photo_name;
                     $_SESSION['logged_in'] = true;
                     header('location: account.php?register_success=You registered successfully!');
                 // If account couldn't registered
@@ -101,6 +114,29 @@
                                         <p>Confirm Password<span>*</span></p>
                                         <input id="registered-confirm-password" type="password" name="confirm_password">
                                     </div>
+                                </div>
+                            </div>
+                            <div class="checkout__input">
+                                <p>Phone<span></span></p>
+                                <input type="text" name="phone">
+                            </div>
+                            <div class="checkout__input">
+                                <p>Town/City<span></span></p>
+                                <input type="text" name="city">
+                            </div>
+                            <div class="checkout__input">
+                                <p>Address<span>*</span></p>
+                                <input type="text" name="address" placeholder="Street Address" class="checkout__input__add">
+                            </div>
+                            <div>
+                                <p>Photo<span></span></p>
+                                <div class="custom-file">
+                                    <input type="file" id="photo" name="photo" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="cold-md-12">
+                                    <p> </p>
                                 </div>
                             </div>
                             <div class="checkout__input">

@@ -93,6 +93,14 @@ function calculateTotalCart()
     $_SESSION['quantity'] = $total_quantity;
 }
 
+$kurs_dollar = 15722;
+
+function setRupiah($price)
+{
+    $result = "Rp".number_format($price, 0, ',', '.');
+    return $result;
+}
+
 ?>
 
 <?php
@@ -106,8 +114,8 @@ include('layouts/header.php');
                 <div class="breadcrumb__text">
                     <h4>Shopping Cart</h4>
                     <div class="breadcrumb__links">
-                        <a href="index.php">Home</a>
-                        <a href="shop.php">Shop</a>
+                        <a href="index.php">Home <i class="fas fa-chevron-right"></i></a>
+                        <a href="shop.php">Shop <i class="fas fa-chevron-right"></i></a>
                         <span>Shopping Cart</span>
                     </div>
                 </div>
@@ -142,7 +150,7 @@ include('layouts/header.php');
                                             </div>
                                             <div class="product__cart__item__text">
                                                 <h6><?php echo $value['product_name']; ?></h6>
-                                                <h5><?php echo $value['product_price']; ?></h5>
+                                                <h5><?php echo setRupiah(($value['product_price'] * $kurs_dollar)); ?></h5>
                                             </div>
                                         </td>
                                         <td class="quantity__item">
@@ -168,8 +176,7 @@ include('layouts/header.php');
                                             </div>
                                         </td>
                                         <td class="cart__price">
-                                            <span>$ </span>
-                                            <span><?php echo $value['product_quantity'] * $value['product_price']; ?> </span>
+                                            <span><?php echo setRupiah(($value['product_quantity'] * ($value['product_price'] * $kurs_dollar))); ?> </span>
                                         </td>
                                         <form method="POST" action="shopping-cart.php">
                                             <td>
@@ -202,7 +209,7 @@ include('layouts/header.php');
                 <div class="cart__total">
                     <h6>Cart total</h6>
                     <ul>
-                        <li>Total <span>$ <?php if(isset($_SESSION['total'])) { echo $_SESSION['total']; } ?></span></li>
+                        <li>Total <span><?php if(isset($_SESSION['total'])) { echo setRupiah($_SESSION['total'] * $kurs_dollar); } ?></span></li>
                     </ul>
                     <form method="POST" action="checkout.php">
                         <input type="submit" class="primary-btn" value="Checkout" name="checkout">

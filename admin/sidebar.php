@@ -44,14 +44,14 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Products Management</h6>
                 <a class="collapse-item" href="products.php">Product List</a>
-                <a class="collapse-item" href="cards.html">Create Product</a>
+                <a class="collapse-item" href="create_product.php">Create Product</a>
             </div>
         </div>
     </li>
 
     <!-- Nav Item - Customers -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="customers.php">
             <i class="fas fa-users"></i>
             <span>Customers</span></a>
     </li>
