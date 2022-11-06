@@ -13,18 +13,17 @@
                     <div class="contact__text">
                         <div class="section-title">
                             <span>Information</span>
-                            <h2>Contact Us</h2>
-                            <p>As you might expect of a company that began as a high-end interiors contractor, we pay
-                                strict attention.</p>
+                            <h2>MF Binary</h2>
+                            <p>Melayani pemesanan poster edukasi, mainan edukasi, dan tumbler dengan harga terjangkau dan bersaing, kami melayani Anda setiap hari Senin - Jumat pukul 08.00 - 17.00, dan hari Sabtu - Minggu pukul 10.00 - 17.00, jangan sungkan untuk menghubungi kami. Kepuasan Anda adalah pencapaian kami.</p>
                         </div>
                         <ul>
                             <li>
-                                <h4>America</h4>
-                                <p>195 E Parker Square Dr, Parker, CO 801 <br />+43 982-314-0958</p>
+                                <h4>Cimahi</h4>
+                                <p>Jl. Ciawi Tali, No.19, Kec. Cisokan. <br />62 837 22626221</p>
                             </li>
                             <li>
-                                <h4>France</h4>
-                                <p>109 Avenue Léon, 63 Clermont-Ferrand <br />+12 345-423-9893</p>
+                                <h4>Developer Contact</h4>
+                                <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="kurniaramadhanputra" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://id.linkedin.com/in/kurniaramadhanputra?trk=profile-badge"></a></div>
                             </li>
                         </ul>
                     </div>
