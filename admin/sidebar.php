@@ -3,10 +3,10 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-user-secret"></i> 
+        <div class="sidebar-brand-icon">
+            <i class="fas fa-calendar"></i>
         </div>
-        <div class="sidebar-brand-text mx-3"> MALE FASHION</div>
+        <div class="sidebar-brand-text mx-3"> MF Binary</div>
     </a>
 
     <!-- Divider -->
@@ -66,7 +66,7 @@
 
     <!-- Nav Item - Customers -->
     <li class="nav-item">
-        <a class="nav-link" href="account.php">
+        <a class="nav-link" href="#displayAccount" data-toggle="modal">
             <i class="fas fa-user"></i>
             <span>Account</span></a>
     </li>
@@ -78,6 +78,42 @@
     <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
-
 </ul>
 <!-- End of Sidebar -->
+<!-- Modal -->
+<div class="modal fade" id="displayAccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Info Admin</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 text-center">
+                        <img src="<?php echo '../assets/img/blog/details/' . $_SESSION['admin_photo2']; ?>" alt="" class="rounded-circle img-responsive" width="150" height="200" />
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <h4><?php if (isset($_SESSION['admin_name'])) {
+                                echo $_SESSION['admin_name'];
+                            } ?></h4>
+                        <p>
+                            <i class="fas fa-envelope"></i> <?php if (isset($_SESSION['admin_email'])) {
+                                                                echo $_SESSION['admin_email'];
+                                                            } ?>
+                            <br />
+                            <i class="fas fa-phone"></i> <?php if (isset($_SESSION['admin_phone'])) {
+                                                                echo $_SESSION['admin_phone'];
+                                                            } ?>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

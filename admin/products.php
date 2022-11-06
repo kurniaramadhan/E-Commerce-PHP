@@ -85,6 +85,20 @@ if (!isset($_SESSION['admin_logged_in'])) {
                     } ?>
                 </div>
             <?php } ?>
+            <?php if (isset($_GET['image_success'])) { ?>
+                <div class="alert alert-info" role="alert">
+                    <?php if (isset($_GET['image_success'])) {
+                        echo $_GET['image_success'];
+                    } ?>
+                </div>
+            <?php } ?>
+            <?php if (isset($_GET['image_failed'])) { ?>
+                <div class="alert alert-danger" role="alert">
+                    <?php if (isset($_GET['image_failed'])) {
+                        echo $_GET['image_failed'];
+                    } ?>
+                </div>
+            <?php } ?>
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -108,41 +122,17 @@ if (!isset($_SESSION['admin_logged_in'])) {
                                 <td><?php echo $product['product_category']; ?></td>
                                 <td><?php echo setRupiah(($product['product_price'] * $kurs_dollar)); ?></td>
                                 <td class="text-center">
+                                    <a href="<?php echo 'edit_image.php?product_id=' . $product['product_id'] . '&product_name=' . $product['product_name']; ?>" class="btn btn-warning btn-circle">
+                                        <i class="fas fa-images"></i>
+                                    </a>
                                     <a href="edit_product.php?product_id=<?php echo $product['product_id']; ?>" class="btn btn-info btn-circle">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                     <a href="delete_product.php?product_id=<?php echo $product['product_id']; ?>" class="btn btn-danger btn-circle">
                                         <i class="fas fa-trash-alt"></i>
                                     </a>
-                                    
-                                    <!--
-                                    <button class="btn btn-danger btn-circle" data-toggle="modal" data-target="#deleteModal">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                    -->
-
                                 </td>
                             </tr>
-                            <!-- Logout Modal-->
-                            <!--
-                            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Are you sure to delete it?</h5>
-                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">×</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">Select "Delete" below if you are ready to delete this record.</div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                            <a href="delete_product.php?product_id=<?php echo $product['product_id']; ?>" class="btn btn-danger">Delete</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            -->
                         <?php } ?>
                     </tbody>
                 </table>

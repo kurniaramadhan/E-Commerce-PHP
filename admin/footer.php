@@ -49,18 +49,77 @@
 <script src="assets/js/sb-admin-2.min.js"></script>
 
 <!-- Page level plugins -->
-<script src="assets/vendor/chart.js/Chart.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="assets/js/demo/chart-area-demo.js"></script>
-<script src="assets/js/demo/chart-pie-demo.js"></script>
-
-<!-- Page level plugins -->
 <script src="assets/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 <!-- Page level custom scripts -->
 <script src="assets/js/demo/datatables-demo.js"></script>
+
+<script>
+    $('#addImage1').on('change', function() {
+        //get the file name
+        var fileName = $(this).val();
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    }) 
+</script>
+<script>
+    $('#addImage2').on('change', function() {
+        //get the file name
+        var fileName = $(this).val();
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    }) 
+</script>
+<script>
+    $('#addImage3').on('change', function() {
+        //get the file name
+        var fileName = $(this).val();
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    }) 
+</script>
+<script>
+    $('#addImage4').on('change', function() {
+        //get the file name
+        var fileName = $(this).val();
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    }) 
+</script>
+
+<script>
+    $('#editImage1').on('change', function() {
+        //get the file name
+        var fileName = $(this).val();
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    }) 
+</script>
+<script>
+    $('#editImage2').on('change', function() {
+        //get the file name
+        var fileName = $(this).val();
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    })
+</script>
+<script>
+    $('#editImage3').on('change', function() {
+        //get the file name
+        var fileName = $(this).val();
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    })
+</script>
+<script>
+    $('#editImage4').on('change', function() {
+        //get the file name
+        var fileName = $(this).val();
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    })
+</script>
 </body>
 
 </html>

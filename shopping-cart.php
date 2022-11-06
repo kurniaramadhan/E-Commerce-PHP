@@ -209,7 +209,7 @@ include('layouts/header.php');
                 <div class="cart__total">
                     <h6>Cart total</h6>
                     <ul>
-                        <li>Total <span><?php if(isset($_SESSION['total'])) { echo setRupiah($_SESSION['total'] * $kurs_dollar); } ?></span></li>
+                        <li>Total <span><?php if(isset($_SESSION['cart'])) { echo setRupiah($_SESSION['total'] * $kurs_dollar); } ?></span></li>
                     </ul>
                     <form method="POST" action="checkout.php">
                         <input type="submit" class="primary-btn" value="Checkout" name="checkout">

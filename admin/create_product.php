@@ -119,9 +119,9 @@ if (isset($_POST['create_btn'])) {
                                         <option value="Kalender">Kalender</option>
                                         <option value="Peta">Peta</option>
                                         <option value="Hewan">Hewan</option>
-                                        <option value="Scarf">Tabel Periodik</option>
+                                        <option value="Tabel Periodik">Tabel Periodik</option>
                                         <option value="Hewan">Buah dan Sayur</option>
-                                        <option value="Scarf">Hijaiyah</option>
+                                        <option value="Hijaiyah">Hijaiyah</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -165,20 +165,32 @@ if (isset($_POST['create_btn'])) {
                                     <input class="form-control" type="text" name="product_special_offer">
                                 </div>
                                 <label>Image 1</label>
-                                <div class="custom-file">
-                                    <input class="custom-file-label" type="file" id="image1" name="product_image1" />
+                                <div class="input-group mb-3">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="addImage1" name="product_image1" aria-describedby="inputGroupFileAddon01">
+                                        <label class="custom-file-label" for="editImage1">Choose file...</label>
+                                    </div>
                                 </div>
                                 <label>Image 2</label>
-                                <div class="custom-file">
-                                    <input class="custom-file-label" type="file" id="image2" name="product_image2">
+                                <div class="input-group mb-3">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="addImage2" name="product_image2" aria-describedby="inputGroupFileAddon01">
+                                        <label class="custom-file-label" for="editImage2">Choose file...</label>
+                                    </div>
                                 </div>
                                 <label>Image 3</label>
-                                <div class="custom-file">
-                                    <input class="custom-file-label" type="file" id="image3" name="product_image3">
+                                <div class="input-group mb-3">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="addImage3" name="product_image3" aria-describedby="inputGroupFileAddon01">
+                                        <label class="custom-file-label" for="editImage1">Choose file...</label>
+                                    </div>
                                 </div>
                                 <label>Image 4</label>
-                                <div class="custom-file">
-                                    <input class="custom-file-label" type="file" id="image4" name="product_image4">
+                                <div class="input-group mb-3">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="addImage4" name="product_image4" aria-describedby="inputGroupFileAddon01">
+                                        <label class="custom-file-label" for="editImage1">Choose file...</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>

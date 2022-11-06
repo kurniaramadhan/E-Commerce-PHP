@@ -11,13 +11,13 @@ if (isset($_POST['login_btn'])) {
     $email = $_POST['email'];
     $password = md5($_POST['password']);
 
-    $query = "SELECT admin_id, admin_name, admin_email, admin_password FROM admins WHERE admin_email = ? AND admin_password = ? LIMIT 1";
+    $query = "SELECT admin_id, admin_name, admin_email, admin_phone, admin_password, admin_photo, admin_photo2 FROM admins WHERE admin_email = ? AND admin_password = ? LIMIT 1";
 
     $stmt_login = $conn->prepare($query);
     $stmt_login->bind_param('ss', $email, $password);
 
     if ($stmt_login->execute()) {
-        $stmt_login->bind_result($admin_id, $admin_name, $admin_email, $admin_password);
+        $stmt_login->bind_result($admin_id, $admin_name, $admin_email, $admin_phone, $admin_password, $admin_photo, $admin_photo2);
         $stmt_login->store_result();
 
         if ($stmt_login->num_rows() == 1) {
@@ -26,6 +26,9 @@ if (isset($_POST['login_btn'])) {
             $_SESSION['admin_id'] = $admin_id;
             $_SESSION['admin_name'] = $admin_name;
             $_SESSION['admin_email'] = $admin_email;
+            $_SESSION['admin_phone'] = $admin_phone;
+            $_SESSION['admin_photo'] = $admin_photo;
+            $_SESSION['admin_photo2'] = $admin_photo2;
             $_SESSION['admin_logged_in'] = true;
 
             header('location: index.php?message=Logged in successfully');
